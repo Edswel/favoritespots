@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     fallbackText: {
-        fontSize: 16
+        fontSize: 16,
+        color: 'white'
     }
 });
