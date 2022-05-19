@@ -5,15 +5,15 @@ import OutlinedButton from '../UI/OutlinedButton';
 
 function ImagePicker() {
     const [pickedImage, setPickedImage] = useState();
-    const [camePermissionInformation, requestPermission] = useCameraPermissions();
+    const [cameraPermissionInformation, requestPermission] = useCameraPermissions();
 
     async function verifyPermissions() {
-        if (camePermissionInformation.status === PermissionStatus.UNDETERMINED) {
+        if (cameraPermissionInformation.status === PermissionStatus.UNDETERMINED) {
             const permissionResponse = await requestPermission();
 
             return permissionResponse.granted;
         }
-        if (camePermissionInformation.status === PermissionStatus.DENIED) {
+        if (cameraPermissionInformation.status === PermissionStatus.DENIED) {
             Alert.alert('Permission denied, action terminated!');
             return false;
         }
