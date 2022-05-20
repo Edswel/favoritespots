@@ -6,7 +6,7 @@ import { getCurrentPositionAsync, useForegroundPermissions, PermissionStatus } f
 import OutlinedButton from '../UI/OutlinedButton';
 import { getMapPreview } from '../../utils/location';
 
-function LocationPicker() {
+function LocationPicker({ onPickLocation }) {
     const navigation = useNavigation();
     const route = useRoute();
     const isFocused = useIsFocused();
@@ -23,6 +23,10 @@ function LocationPicker() {
             setPickedLocation(mapPickedLocation)
         }
     }, [route, isFocused]);
+
+    useEffect(() => {
+        onPickLocation(pickedLocation)
+    }, [pickedLocation, onPickLocation]);
 
     async function verifyPermissions() {
         if (locationPermissionInformation.status === PermissionStatus.UNDETERMINED) {
