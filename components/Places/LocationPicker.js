@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Image, Alert } from 'react-native';
 import { getCurrentPositionAsync, useForegroundPermissions, PermissionStatus } from 'expo-location';
 
 import OutlinedButton from '../UI/OutlinedButton';
-import { getMapPreview } from '../../utils/location';
+import { getAddress, getMapPreview } from '../../utils/location';
 
 function LocationPicker({ onPickLocation }) {
     const navigation = useNavigation();
@@ -25,7 +25,13 @@ function LocationPicker({ onPickLocation }) {
     }, [route, isFocused]);
 
     useEffect(() => {
-        onPickLocation(pickedLocation)
+        async function handleLocation() {
+            if (pickedLocation) {
+                const address = await getAddress(pickedLocation.lat, pickedLocation.lng);
+                onPickLocation({ ...pickedLocation, address: address });
+            }
+        }
+        handleLocation();
     }, [pickedLocation, onPickLocation]);
 
     async function verifyPermissions() {

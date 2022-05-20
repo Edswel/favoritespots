@@ -4,7 +4,7 @@ import { Colors } from '../../constants/colors';
 function Button({ onPress, children }) {
     return (
         <Pressable style={({ pressed }) => [styles.button, pressed && styles.pressed]} onPress={onPress}>
-            <Text style={styles.button}>{children}</Text>
+            <Text style={styles.text}>{children}</Text>
         </Pressable>
     )
 }
