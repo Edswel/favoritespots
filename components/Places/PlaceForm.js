@@ -45,12 +45,12 @@ export default PlaceForm;
 const styles = StyleSheet.create({
     form: {
         flex: 1,
-        padding: 24,
+        padding: 24
     },
     label: {
         fontWeight: 'bold',
         marginBottom: 4,
-        color: 'white'
+        color: '#fff'
     },
     input: {
         marginVertical: 8,
